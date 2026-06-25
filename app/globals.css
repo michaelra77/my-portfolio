@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* 클래스(.dark) 기반 다크모드 — OS 설정이 아닌 토글로 제어 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
@@ -13,11 +16,29 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 한국어 단어가 어절 중간에 잘리지 않도록 전역 적용.
+   긴 영문/URL 등은 overflow-wrap 으로 컨테이너를 넘치지 않게 처리.
+   @layer base 안에 두어, break-all/break-words 같은 Tailwind 유틸리티가
+   필요한 곳에서는 이 기본값을 정상적으로 덮어쓸 수 있게 함. */
+@layer base {
+  * {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
+
 body {
   background-color: #ffffff;
   color: #171717;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: #0a0a0a;
+  color: #ededed;
 }
 
 /* 부드러운 진입 애니메이션 */
@@ -57,5 +78,26 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none;
+  }
+}
+
+/* 스크롤 진입 페이드인 (Reveal 컴포넌트에서 사용) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

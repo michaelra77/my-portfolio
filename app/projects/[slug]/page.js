@@ -30,7 +30,7 @@ export default async function ProjectDetail({ params }) {
       {/* 뒤로가기 */}
       <Link
         href="/#projects"
-        className="inline-flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+        className="inline-flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-white"
       >
         <span aria-hidden="true">←</span>
         프로젝트 목록으로
@@ -50,17 +50,17 @@ export default async function ProjectDetail({ params }) {
             </>
           )}
         </div>
-        <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-4xl">
+        <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
           {project.title}
         </h1>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
           {project.summary}
         </p>
         <div className="mt-6 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600"
+              className="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
             >
               {tag}
             </span>
@@ -69,7 +69,7 @@ export default async function ProjectDetail({ params }) {
       </header>
 
       {/* 대표 이미지 */}
-      <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-100">
+      <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800">
         <Image
           src={project.image}
           alt={`${project.title} 대표 이미지`}
@@ -89,13 +89,13 @@ export default async function ProjectDetail({ params }) {
           {project.highlights.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-2xl border border-neutral-200 p-6 transition-colors hover:border-accent"
+              className="rounded-2xl border border-neutral-200 p-6 transition-colors hover:border-accent dark:border-neutral-800"
             >
               <span className="mb-4 block h-1 w-8 rounded-full bg-accent" />
-              <dt className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
+              <dt className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl dark:text-white">
                 {stat.value}
               </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-neutral-500">
+              <dd className="mt-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
                 {stat.label}
               </dd>
             </div>
@@ -115,28 +115,28 @@ export default async function ProjectDetail({ params }) {
               className="border-l-2 border-accent pl-6"
             >
               {c.name && (
-                <h3 className="text-lg font-semibold text-neutral-900">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
                   {c.name}
                 </h3>
               )}
-              <p className="mt-1 leading-relaxed text-neutral-600">
+              <p className="mt-1 leading-relaxed text-neutral-600 dark:text-neutral-300">
                 {c.summary}
               </p>
 
               {c.results.length > 0 && (
                 <>
-                  <p className="mt-5 text-sm font-medium text-neutral-900">
+                  <p className="mt-5 text-sm font-medium text-neutral-900 dark:text-white">
                     성과
                   </p>
                   <ul className="mt-2 space-y-2">
                     {c.results.map((r) => (
                       <li
                         key={r}
-                        className="flex gap-2.5 leading-relaxed text-neutral-600"
+                        className="flex gap-2.5 leading-relaxed text-neutral-600 dark:text-neutral-300"
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-neutral-900"
+                          className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-neutral-900 dark:bg-accent"
                         />
                         {r}
                       </li>
@@ -147,10 +147,10 @@ export default async function ProjectDetail({ params }) {
 
               {c.role && (
                 <>
-                  <p className="mt-5 text-sm font-medium text-neutral-900">
+                  <p className="mt-5 text-sm font-medium text-neutral-900 dark:text-white">
                     수행 업무 · 역할
                   </p>
-                  <p className="mt-2 leading-relaxed text-neutral-600">
+                  <p className="mt-2 leading-relaxed text-neutral-600 dark:text-neutral-300">
                     {c.role}
                   </p>
                 </>
@@ -170,7 +170,7 @@ export default async function ProjectDetail({ params }) {
             {project.gallery.map((src, i) => (
               <div
                 key={src}
-                className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-neutral-100"
+                className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800"
               >
                 <Image
                   src={src}
@@ -186,7 +186,7 @@ export default async function ProjectDetail({ params }) {
       )}
 
       {/* 하단 뒤로가기 */}
-      <div className="mt-16 border-t border-neutral-100 pt-8">
+      <div className="mt-16 border-t border-neutral-100 pt-8 dark:border-neutral-800">
         <Link
           href="/#projects"
           className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:bg-accent-strong"
